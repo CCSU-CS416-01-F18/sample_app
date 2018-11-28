@@ -1,5 +1,6 @@
 class NicknamesController < ApplicationController
   before_action :set_nickname, only: [:show, :edit, :update, :destroy]
+  before_action :set_dogs, only: [:new, :show, :edit, :update]
 
   # GET /nicknames
   # GET /nicknames.json
@@ -26,13 +27,20 @@ class NicknamesController < ApplicationController
   def create
     @nickname = Nickname.new(nickname_params)
 
-    respond_to do |format|
-      if @nickname.save
-        format.html { redirect_to @nickname, notice: 'Nickname was successfully created.' }
-        format.json { render :show, status: :created, location: @nickname }
-      else
-        format.html { render :new }
-        format.json { render json: @nickname.errors, status: :unprocessable_entity }
+    # If adding a nickname to a dog from that page redirect there
+    if !params[:add_nickname].nil?
+      @nickname.save
+      redirect_to @nickname.dog
+    else
+
+      respond_to do |format|
+        if @nickname.save
+          format.html { redirect_to @nickname, notice: 'Nickname was successfully created.' }
+          format.json { render :show, status: :created, location: @nickname }
+        else
+          format.html { render :new }
+          format.json { render json: @nickname.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -65,6 +73,10 @@ class NicknamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_nickname
       @nickname = Nickname.find(params[:id])
+    end
+
+    def set_dogs
+      @dogs = Dog.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

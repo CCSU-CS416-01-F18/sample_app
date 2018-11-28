@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h1>
   <strong>Name:</strong>
   <%= @dog.name %>
-</p>
+</h1>
 
 <h2>Nicknames</h2>
 <table width="100%" border="1">
@@ -23,6 +23,24 @@
     <% end %>
   </tbody>
 </table>
+
+<h1>Add a new nickname</h1>
+<%= form_with(model: @new_nickname, local: true) do |form| %>
+  <%= hidden_field_tag('nickname[dog_id]', @dog.id) %>
+  <%= hidden_field_tag('add_nickname', 'true') %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :nickname_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
 
 <h2>Roles</h2>
 <table width="100%" border="1">

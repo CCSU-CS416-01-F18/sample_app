@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  before_action :set_roles, only: [:new, :show, :edit, :update]
 
   # GET /dogs
   # GET /dogs.json
@@ -10,6 +11,7 @@ class DogsController < ApplicationController
   # GET /dogs/1
   # GET /dogs/1.json
   def show
+    @new_nickname = Nickname.new(dog_id: @dog.id)
   end
 
   # GET /dogs/new
@@ -19,7 +21,6 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
-    @roles = Role.all
   end
 
   # POST /dogs
@@ -66,6 +67,10 @@ class DogsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_dog
       @dog = Dog.find(params[:id])
+    end
+
+    def set_roles
+      @roles = Role.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -15,7 +15,7 @@
     <% @nicknames.each do |nickname| %>
       <tr>
         <td><%= nickname.name %></td>
-        <td><%= nickname.dog_id %></td>
+        <td><%= link_to nickname.dog.name, nickname.dog %></td>
         <td><%= link_to 'Show', nickname %></td>
         <td><%= link_to 'Edit', edit_nickname_path(nickname) %></td>
         <td><%= link_to 'Destroy', nickname, method: :delete, data: { confirm: 'Are you sure?' } %></td>
