@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dog.name %>
+</p>
+
+<h2>Nicknames</h2>
+<table width="100%" border="1">
+  <thead>
+    <tr>
+      <th width="75%">Nickname</th>
+      <th width="25%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dog.nicknames.each do |nickname| %>
+      <tr>
+          <td><%= nickname.name %></td>
+          <td><%= link_to 'Show', nickname %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Roles</h2>
+<table width="100%" border="1">
+  <thead>
+    <tr>
+      <th width="75%">Roles</th>
+      <th width="25%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dog.roles.each do |role| %>
+      <tr>
+          <td><%= role.role_name %></td>
+          <td><%= link_to 'Show', role %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_dog_path(@dog) %> |
+<%= link_to 'Back', dogs_path %>

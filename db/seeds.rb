@@ -14,3 +14,17 @@
                password:              password,
                password_confirmation: password)
 end
+
+wrigley = Dog.create!(name: "Wrigley")
+
+nickname1 = Nickname.create!(name: "Wiggly", dog_id: wrigley.id)
+nickname2 = Nickname.create!(name: "Little dog", dog_id: wrigley.id)
+nickname3 = Nickname.create!(name: "Trouble", dog_id: wrigley.id)
+
+pet_role = Role.create!(role_name: "Pet")
+service_role = Role.create!(role_name: "Service Dog")
+therapy_role = Role.create!(role_name: "Therapy Dog")
+alpha_role = Role.create!(role_name: "Alpha Dog")
+
+wrigley.update(role_ids: [pet_role.id,alpha_role.id])
+wrigley.save
