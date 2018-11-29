@@ -30,6 +30,7 @@ class NicknamesController < ApplicationController
     # If adding a nickname to a dog from that page redirect there
     if !params[:add_nickname].nil?
       @nickname.save
+      flash[:success] = 'Nickname added!'
       redirect_to @nickname.dog
     else
 
