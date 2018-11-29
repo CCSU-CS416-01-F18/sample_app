@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>
+  <% if !@dog.image_url.nil? && @dog.image_url.length > 0 %>
+    <img src="<%= @dog.image_url %>" width="100" />
+  <% else %>
+    <%= image_tag "default-dog.png", width: "100" %>
+  <% end %>
   <strong>Name:</strong>
   <%= @dog.name %>
 </h1>
+<p>This is including the image via an image url if provided,
+   otherwise shows a default image</p>
 
 <h2>Nicknames</h2>
 <table width="100%" border="1">

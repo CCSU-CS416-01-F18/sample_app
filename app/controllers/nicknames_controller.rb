@@ -33,7 +33,6 @@ class NicknamesController < ApplicationController
       flash[:success] = 'Nickname added!'
       redirect_to @nickname.dog
     else
-
       respond_to do |format|
         if @nickname.save
           format.html { redirect_to @nickname, notice: 'Nickname was successfully created.' }

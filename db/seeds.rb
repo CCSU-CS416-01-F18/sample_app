@@ -15,7 +15,7 @@
                password_confirmation: password)
 end
 
-wrigley = Dog.create!(name: "Wrigley")
+wrigley = Dog.create!(name: "Wrigley", image_url: "https://www.dogster.com/wp-content/uploads/2018/07/dog-face-close-up-oils.jpg")
 
 nickname1 = Nickname.create!(name: "Wiggly", dog_id: wrigley.id)
 nickname2 = Nickname.create!(name: "Little dog", dog_id: wrigley.id)
